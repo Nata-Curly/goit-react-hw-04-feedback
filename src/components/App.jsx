@@ -25,50 +25,45 @@ export default function App() {
       case feedbackList.bad: setBad(prevFeedback => prevFeedback + 1); break;
       default: throw new Error("Unknown feedback");
     }
-  }
+  };
   
 
   
   const countTotalFeedback = () => {
-    // return Object.values(this.state).reduce((total, value) => total + value, 0);
     return good + neutral + bad
     };
 
     const countPositiveFeedbackPercentage = () => {
     const total = countTotalFeedback();
-    // const { good } = this.state;
     return Math.round((good * 100) / total);
   };
   
   
-
-  // render() { 
     const optoins = Object.keys(feedbackList);
-  //   const { good, neutral, bad } = this.state;  
     const total = countTotalFeedback();
     const totalPositive = countPositiveFeedbackPercentage();
 
-    return (
-      <Container>
-        <Section title="Please leave your feedback">
-          <FeedbackOptions
-            options={optoins}
-            onLeaveFeedback={onLeaveFeedback} />
-        </Section>
+  return (
+    <Container>
+      <Section title="Please leave your feedback">
+        <FeedbackOptions
+          options={optoins}
+          onLeaveFeedback={onLeaveFeedback} />
+      </Section>
       
-        <Section title="Statistics">
-          {total > 0 ?
-            (<Statistics
-              good={good}
-              neutral={neutral}
-              bad={bad}
-              total={total}
-              totalPositive={totalPositive}
-            />) : (<Notification message="There is no feedback" />)}
-        </Section>
-      </Container>
-    )
-  }
+      <Section title="Statistics">
+        {total > 0 ?
+          (<Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={total}
+            totalPositive={totalPositive}
+          />) : (<Notification message="There is no feedback" />)}
+      </Section>
+    </Container>
+  );
+};
 
 
 // export default App;
